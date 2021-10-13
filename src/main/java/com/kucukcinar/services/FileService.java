@@ -29,9 +29,17 @@ public class FileService {
         }
     }
 
-    public Optional<File> getFile(Integer fileId) {
+    public Optional<File> getFileById(Integer fileId) {
         try {
             return fileRepository.findById(fileId);
+        }catch (Exception e){
+            throw new RuntimeException("Could not get the file! " + e.getMessage());
+        }
+    }
+
+    public Optional<File> getFileByName(String fileName) {
+        try {
+            return fileRepository.findByName(fileName);
         }catch (Exception e){
             throw new RuntimeException("Could not get the file! " + e.getMessage());
         }
@@ -44,16 +52,6 @@ public class FileService {
         }catch (Exception e){
             throw new RuntimeException("Could not get all the files! " + e.getMessage());
         }
-    }
-
-
-    public List<FileResponse> getResponseFiles(){
-        List<FileResponse> fileResponses = new ArrayList<>();
-        List<File> files =  fileRepository.findAll();
-        for (File file : files) {
-            fileResponses.add(new FileResponse(file.getId(),file.getFileName()));
-        }
-        return fileResponses;
     }
 
     public boolean controlFileName(String fileName){

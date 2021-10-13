@@ -1,8 +1,12 @@
 package com.kucukcinar.repositories;
 
 import com.kucukcinar.entities.File;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 
 /**
@@ -11,4 +15,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FileRepository extends JpaRepository<File,Integer>{
 
+    @Query(value = "SELECT * FROM files f WHERE f.file_name = :filename",nativeQuery = true)
+    Optional<File> findByName(String filename);
 }

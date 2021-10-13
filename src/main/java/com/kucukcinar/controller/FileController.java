@@ -50,13 +50,32 @@ public class FileController {
         }
     }
 
-    @GetMapping("/downloadFile/{fileId}")
-    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable Integer fileId){
-        File file = fileService.getFile(fileId).get();
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(file.getFileType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+file.getFileType()+"\"")
-                .body(new ByteArrayResource(file.getData()));
+    @GetMapping("/downloadFileById/{fileId}")
+    public ResponseEntity<ByteArrayResource> downloadFileById(@PathVariable Integer fileId){
+        try {
+            File file = fileService.getFileById(fileId).get();
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(file.getFileType()))
+                    .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+file.getFileType()+"\"")
+                    .body(new ByteArrayResource(file.getData()));
+        } catch (Exception e){
+            throw new RuntimeException("Could not get the file! Please control the file ID");
+        }
+
+    }
+
+    @GetMapping("/downloadFileByName/{fileName}")
+    public ResponseEntity<ByteArrayResource> downloadFileByName(@PathVariable String fileName){
+        try {
+            File file = fileService.getFileByName(fileName).get();
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(file.getFileType()))
+                    .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+file.getFileType()+"\"")
+                    .body(new ByteArrayResource(file.getData()));
+        } catch (Exception e){
+            throw new RuntimeException("Could not get the file! Please control the file name!");
+        }
+
     }
 
 
@@ -82,7 +101,7 @@ public class FileController {
     @DeleteMapping("/delete/{fileId}")
     public ResponseEntity<ResponseMessage> deleteFile(@PathVariable Integer fileId){
         String message = "";
-        Optional<File> file = fileService.getFile(fileId);
+        Optional<File> file = fileService.getFileById(fileId);
         try {
             fileService.delete(fileId);
             message = "File deleted successfully!";
