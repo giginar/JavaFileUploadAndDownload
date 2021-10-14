@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "deeb873c-49c4-458b-b50b-fcf5adc87af9",
+		"name": "FileUploadDownload",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\":\"Yigit\",\r\n    \"lastName\":\"Kucukcinar\",\r\n    \"email\":\"deneme6@hotmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/welcome/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"welcome",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"deneme@hotmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/welcome/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"welcome",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload File",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5lbWVAaG90bWFpbC5jb20iLCJpYXQiOjE2MzQxMzgwODQsImV4cCI6MTYzNDIyNDQ4NH0.Rpm3YbGATucTtrF2x4qFWJnbLF4-gY92MX15ADaXmY9aP34-CLfcEYua_trhL9l_-NwJ5zMF705Ho91x5T40Zg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/yigit/Desktop/Resim 001.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/file/upload/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file",
+						"upload",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Files",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5lbWVAaG90bWFpbC5jb20iLCJpYXQiOjE2MzQxNDI3NDgsImV4cCI6MTYzNDIyOTE0OH0.wpruQ5GP_zygwXdClViw8Tvkh5rOLvbjsIDQyP0xhDmjyd2da_fc2Ier1Nipjt22at4RZI-hJm3xRbv6TE5quQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/file/downloadFiles/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file",
+						"downloadFiles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One File by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5lbWVAaG90bWFpbC5jb20iLCJpYXQiOjE2MzQxNDI3NDgsImV4cCI6MTYzNDIyOTE0OH0.wpruQ5GP_zygwXdClViw8Tvkh5rOLvbjsIDQyP0xhDmjyd2da_fc2Ier1Nipjt22at4RZI-hJm3xRbv6TE5quQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/file/downloadFileById/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file",
+						"downloadFileById",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One File by Name",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5lbWVAaG90bWFpbC5jb20iLCJpYXQiOjE2MzQxNDI3NDgsImV4cCI6MTYzNDIyOTE0OH0.wpruQ5GP_zygwXdClViw8Tvkh5rOLvbjsIDQyP0xhDmjyd2da_fc2Ier1Nipjt22at4RZI-hJm3xRbv6TE5quQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/file/downloadFileByName/Resim 001.jpg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file",
+						"downloadFileByName",
+						"Resim 001.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete File",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/file/delete/1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file",
+						"delete",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Files",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/file/deleteAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file",
+						"deleteAll"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
