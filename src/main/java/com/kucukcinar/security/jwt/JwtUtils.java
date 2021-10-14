@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.*;
 
+/**
+ * The type Jwt utils.
+ */
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
@@ -22,6 +25,12 @@ public class JwtUtils {
     private int jwtExpirationMs = 86400000;
 
 
+    /**
+     * Generate jwt token string.
+     *
+     * @param authentication the authentication
+     * @return the string
+     */
     public String generateJwtToken(Authentication authentication) {
 
         User userPrincipal = (User) authentication.getPrincipal();
@@ -32,10 +41,22 @@ public class JwtUtils {
                 .signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
     }
 
+    /**
+     * Gets user name from jwt token.
+     *
+     * @param token the token
+     * @return the user name from jwt token
+     */
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
 
+    /**
+     * Validate jwt token boolean.
+     *
+     * @param authToken the auth token
+     * @return the boolean
+     */
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);

@@ -15,6 +15,12 @@ import java.util.Optional;
 @Repository
 public interface FileRepository extends JpaRepository<File,Integer>{
 
+    /**
+     * Find by name optional.
+     *
+     * @param filename the filename
+     * @return the optional
+     */
     @Query(value = "SELECT * FROM files f WHERE f.file_name = :filename",nativeQuery = true)
     Optional<File> findByName(String filename);
 }

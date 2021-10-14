@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+/**
+ * The type File.
+ */
 @Entity
 @Table(name="files")
 @Getter
@@ -26,6 +29,13 @@ public class File {
     @Lob
     private byte[] data;
 
+    /**
+     * Instantiates a new File.
+     *
+     * @param fileName the file name
+     * @param fileType the file type
+     * @param data     the data
+     */
     public File(String fileName, String fileType, byte[] data) {
         this.fileName = fileName;
         this.fileType = fileType;

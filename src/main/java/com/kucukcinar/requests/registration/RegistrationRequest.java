@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * The type Registration request.
+ */
 @Getter
 @Setter
 @ToString

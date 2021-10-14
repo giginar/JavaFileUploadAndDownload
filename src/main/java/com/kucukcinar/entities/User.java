@@ -13,6 +13,9 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * The type User.
+ */
 @Entity
 @Table(name="users")
 @Getter
@@ -32,6 +35,15 @@ public class User implements UserDetails {
     @JsonEnumDefaultValue
     private UserRole userRole;
 
+    /**
+     * Instantiates a new User.
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @param email     the email
+     * @param password  the password
+     * @param userRole  the user role
+     */
     public User(String firstName, String lastName, String email, String password, UserRole userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +58,12 @@ public class User implements UserDetails {
         return Collections.singletonList(authority);
     }
 
+    /**
+     * Build user.
+     *
+     * @param user the user
+     * @return the user
+     */
     public static User build(User user) {
 
         return new User(

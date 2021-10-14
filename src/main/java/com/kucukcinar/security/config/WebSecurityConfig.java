@@ -18,6 +18,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.kucukcinar.security.jwt.AuthEntryPointJwt;
 import com.kucukcinar.security.jwt.AuthTokenFilter;
 
+/**
+ * The type Web security config.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableWebMvc
@@ -41,6 +44,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
+    /**
+     * Authentication jwt token filter auth token filter.
+     *
+     * @return the auth token filter
+     */
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
@@ -57,6 +65,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    /**
+     * Password encoder password encoder.
+     *
+     * @return the password encoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

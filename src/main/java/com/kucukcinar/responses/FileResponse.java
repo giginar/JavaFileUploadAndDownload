@@ -5,8 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 /**
- * The type Document response.
+ * The type File response.
  */
 @Getter
 @Setter

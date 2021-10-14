@@ -12,12 +12,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
+/**
+ * The type File service.
+ */
 @Service
 public class FileService {
 
     @Autowired
     private FileRepository fileRepository;
 
+    /**
+     * Save file.
+     *
+     * @param file the file
+     */
     public void saveFile(MultipartFile file) {
         String fileName = file.getOriginalFilename();
         try {
@@ -29,6 +37,12 @@ public class FileService {
         }
     }
 
+    /**
+     * Gets file by id.
+     *
+     * @param fileId the file id
+     * @return the file by id
+     */
     public Optional<File> getFileById(Integer fileId) {
         try {
             return fileRepository.findById(fileId);
@@ -37,6 +51,12 @@ public class FileService {
         }
     }
 
+    /**
+     * Gets file by name.
+     *
+     * @param fileName the file name
+     * @return the file by name
+     */
     public Optional<File> getFileByName(String fileName) {
         try {
             return fileRepository.findByName(fileName);
@@ -46,6 +66,11 @@ public class FileService {
     }
 
 
+    /**
+     * Get files list.
+     *
+     * @return the list
+     */
     public List<File> getFiles(){
         try {
             return fileRepository.findAll();
@@ -54,6 +79,12 @@ public class FileService {
         }
     }
 
+    /**
+     * Control file name boolean.
+     *
+     * @param fileName the file name
+     * @return the boolean
+     */
     public boolean controlFileName(String fileName){
         boolean canSave = false;
         String[] suffixOfFile = fileName.split("\\.");
@@ -71,6 +102,9 @@ public class FileService {
         }
     }
 
+    /**
+     * Delete all.
+     */
     public void deleteAll() {
         try{
             fileRepository.deleteAll();
@@ -80,6 +114,11 @@ public class FileService {
     }
 
 
+    /**
+     * Delete.
+     *
+     * @param fileId the file id
+     */
     public void delete(Integer fileId) {
         try{
             File file = fileRepository.getById(fileId);

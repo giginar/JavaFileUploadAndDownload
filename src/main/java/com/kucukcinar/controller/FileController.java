@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+/**
+ * The type File controller.
+ */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/file")
@@ -24,13 +27,12 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-//    @GetMapping("/")
-//    public String get(Model model) {
-//        List<File> docs = fileService.getFiles();
-//        model.addAttribute("docs", docs);
-//        return "doc";
-//    }
-
+    /**
+     * Upload file response entity.
+     *
+     * @param file the file
+     * @return the response entity
+     */
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
@@ -50,6 +52,12 @@ public class FileController {
         }
     }
 
+    /**
+     * Download file by id response entity.
+     *
+     * @param fileId the file id
+     * @return the response entity
+     */
     @GetMapping("/downloadFileById/{fileId}")
     public ResponseEntity<ByteArrayResource> downloadFileById(@PathVariable Integer fileId){
         try {
@@ -64,6 +72,12 @@ public class FileController {
 
     }
 
+    /**
+     * Download file by name response entity.
+     *
+     * @param fileName the file name
+     * @return the response entity
+     */
     @GetMapping("/downloadFileByName/{fileName}")
     public ResponseEntity<ByteArrayResource> downloadFileByName(@PathVariable String fileName){
         try {
@@ -79,12 +93,22 @@ public class FileController {
     }
 
 
+    /**
+     * Download files response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping("/downloadFiles")
     public ResponseEntity<List<File>> downloadFiles(){
         List<File> files = fileService.getFiles();
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
+    /**
+     * Delete all files response entity.
+     *
+     * @return the response entity
+     */
     @DeleteMapping("/deleteAll")
     public ResponseEntity<ResponseMessage> deleteAllFiles(){
         String message = "";
@@ -98,6 +122,12 @@ public class FileController {
         }
     }
 
+    /**
+     * Delete file response entity.
+     *
+     * @param fileId the file id
+     * @return the response entity
+     */
     @DeleteMapping("/delete/{fileId}")
     public ResponseEntity<ResponseMessage> deleteFile(@PathVariable Integer fileId){
         String message = "";

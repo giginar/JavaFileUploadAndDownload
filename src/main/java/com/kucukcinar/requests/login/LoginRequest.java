@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * The type Login request.
+ */
 @Getter
 @Setter
 @ToString

@@ -23,21 +23,43 @@ import com.kucukcinar.requests.login.LoginRequest;
 
 import java.util.List;
 
+/**
+ * The type User service.
+ */
 @Service
 public class UserService implements UserDetailsService {
 
+    /**
+     * The Authentication manager.
+     */
     @Autowired
     AuthenticationManager authenticationManager;
 
+    /**
+     * The User repository.
+     */
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * The Password encoder.
+     */
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    /**
+     * The Jwt utils.
+     */
     @Autowired
     JwtUtils jwtUtils;
 
+    /**
+     * Authenticate user response entity.
+     *
+     * @param loginRequest the login request
+     * @return the response entity
+     * @throws UsernameNotFoundException the username not found exception
+     */
     public ResponseEntity<?> authenticateUser(LoginRequest loginRequest) throws UsernameNotFoundException {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
@@ -52,6 +74,12 @@ public class UserService implements UserDetailsService {
     }
 
 
+    /**
+     * Register user response entity.
+     *
+     * @param registrationRequest the registration request
+     * @return the response entity
+     */
     public ResponseEntity<?> registerUser(RegistrationRequest registrationRequest) {
         List<User> users = userRepository.findAll();
         for (User us: users) {
