@@ -1,7 +1,5 @@
 package com.kucukcinar.controller;
 
-import javax.validation.Valid;
-
 import com.kucukcinar.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
